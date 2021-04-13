@@ -1,3 +1,6 @@
+Fabric.js Polygon 그릴 때 Zoom/Pan 발생시 좌표 어긋나는 버그에 대하여
+===============================
+
 회사에서 개발하고 있는 솔루션에 협업 기능을 넣고자 Canvas 작업을 하고 있습니다.
 
 오픈 소스인 fabric.js 라이브러리를 사용하였고 버전은 4.3.1 버전을 사용하였습니다.
@@ -12,8 +15,9 @@ Canvas에서 Zoom In/Out이 일어나거나 Panning이 발생할 경우 좌표 �
 
 현재 레이어가 기준이므로 만약 줌 인 줌 아웃이 되었을 때 좌표 정보를 잘못 가져오게 되어서 viewPort를 변경해가면서 가져와야합니다.
 
-* ViewPort란?
-- 전체 window에서 실제로 화면이 그려질 직사각형의 영역
+#### ViewPort란?
+
+전체 window에서 실제로 화면이 그려질 직사각형의 영역
 
 fabric object로 생성한 canvas의 viwportTransform을 드래깅이 발생할 때, 마우스 휠 이벤트가 발생할 때 조정을 해야하는 것입니다.
 
@@ -21,7 +25,8 @@ fabric object로 생성한 canvas의 viwportTransform을 드래깅이 발생할 
 
 다행히 fabric.js에서는 getPointer라는 함수를 제공함으로써 이 귀찮은 비용을 줄여줍니다.
 
-* getPointer 소개
+#### getPointer 소개
+
 getPointer(e, ignoreZoom) → {Object}
 Returns pointer coordinates relative to canvas. Can return coordinates with or without viewportTransform. ignoreZoom false gives back coordinates that represent the point clicked on canvas element. ignoreZoom true gives back coordinates after being processed by the viewportTransform ( sort of coordinates of what is displayed on the canvas where you are clicking. ignoreZoom true = HTMLElement coordinates relative to top,left ignoreZoom false, default = fabric space coordinates, the same used for shape position To interact with your shapes top and left you want to use ignoreZoom true most of the time, while ignoreZoom false will give you coordinates compatible with the object.oCoords system. of the time.
 
